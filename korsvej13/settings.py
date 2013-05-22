@@ -103,7 +103,7 @@ ROOT_URLCONF = 'korsvej13.urls'
 WSGI_APPLICATION = 'korsvej13.wsgi.application'
 
 import os
-TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\','/'),)
+TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', '../booking/templates').replace('\\','/'),)
 
 INSTALLED_APPS = (
     #'django.contrib.auth',
