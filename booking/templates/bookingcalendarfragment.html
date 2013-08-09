@@ -1,0 +1,43 @@
+<script type="text/javascript">
+    var month = [];
+    month[1]="January";
+    month[2]="February";
+    month[3]="March";
+    month[4]="April";
+    month[5]="May";
+    month[6]="June";
+    month[7]="July";
+    month[8]="August";
+    month[9]="September";
+    month[10]="October";
+    month[11]="November";
+    month[12]="December";
+
+    function updateBookingMonth(year, month){
+        if (month == 0){
+            year--;
+            month = 12;
+        }else if (month == 13){
+            year++;
+            month = 1;
+        }
+        $.ajax({
+            url: "/booking/" + year + "/" + month,
+            dataType: "json",
+            accepts: "json"
+        }).success(function(data, textStatus, xhr){
+            $("#BookingTable").html("<tr><th><label id=\"monthname\"></label><label id=\"year\"></label><span class=\"link\" id=\"prevlink\">PREVIOUS</span>&nbsp;<span class=\"link\" id=\"nextlink\">NEXT</span> </th></tr>")
+            for (i=0;i<5;i++){
+                $("#BookingTable").append("<tr id=\"row" + i + "\"></tr>");
+                for (j=0;j<7;j++){
+                    $("#row" + i).append("<td class=\"" + data[i*5+j]["status"] + "\">" + data[i*5+j]["day"] + "</td>");
+                }
+            }
+            $("#monthname").val("ASDF");
+            alert(month[month]);
+        });
+    }
+    $(document).ready(updateBookingMonth(2013, 7))
+</script>
+<table id="BookingTable">
+</table>

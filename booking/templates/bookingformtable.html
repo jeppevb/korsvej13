@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+{% block title %}Reservér Emmerbøllegård{% endblock %}
+{% block headext %}<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />{% endblock %}
+{% block content %}
+    <form>
+        <table>
+            <tr>
+                <td>Navn</td>
+                <td>
+                    <input type="text" id="name" name="name"/>
+                </td>
+            </tr>
+            <tr><td>Adresse</td>
+                <td>
+                    <textarea name="address" id="address" rows="3"></textarea>
+                </td>
+            </tr>
+            <tr><td>Telefon</td>
+                <td>
+                    <input type="text" id="phone" name="phone"/>
+                </td>
+            </tr>
+            <tr><td>E-mail</td><td>
+                <input type="email" id="email" name="email" />
+            </td></tr>
+            <tr><td>Antal personer</td><td><input type="number" id="numpersons" name="numpersons"></td></tr>
+            <tr><td>Første dag</td><td>
+                <input type="text" id="firstDayInput"/>
+            </td></tr>
+            <tr><td>Sidste dag</td><td>
+                <input type="text" id="lastDayInput"/>
+            </td>
+
+            </tr>
+        </table>
+    </form>
+    <script type="text/javascript">
+        $(function() {
+            $( "#firstDayInput" ).datepicker();
+        });
+        $(function() {
+            $( "#lastDayInput" ).datepicker();
+        });
+    </script>
+{% endblock %}

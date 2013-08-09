@@ -23,10 +23,8 @@ class Stage(models.Model):
     name = models.CharField(max_length=20)
 
 class Booking(models.Model):
-    datefrom = models.DateField()
-    dateto = models.DateField()
     pricetier = models.ForeignKey(PriceTier)
     contactsheet = models.ForeignKey(ContactSheet)
     stage = models.ForeignKey(Stage)
-    def weeknumbers(self):
-        return self.datefrom.strftime("%U") + " - " + self.dateto.strftime("%U")
+    firstday = models.DateField()
+    lastday = models.DateField()

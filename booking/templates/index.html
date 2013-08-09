@@ -1,9 +1,54 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>{% block title %}Lej Emmerbøllegård på Langeland{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
+    <script type="text/javascript" src="{% static "jquery/jquery.js" %}"></script>
+    <script type="text/javascript" src="{% static "jqueryui/jquery-ui-1.10.3/ui/jquery-ui.js" %}"></script>
+    <script type="text/javascript">
+        var numimages = {{ imagenums|length }};
+        $(document).ready(function(){
+            $("#top").css("transition", "background-image 1400ms ease-in-out");
+            setInterval(changeTopImage, 7000);
+        });
+
+        function changeTopImage(){
+            $("#top").css("background-image", "url(/static/pics/top" + (1+Math.floor(Math.random() * numimages))+ ".JPG)");
+        }
+
+
+    </script>
+{% block headext %}{% endblock %}
 </head>
 <body>
-<div id="supercontainer"><div id="top"><div id="menu">{% include "menu.html" %}</div></div></div>
+<div id="supercontainer">
+    <div id="leftshadow" class="shadow"></div>
+    <div id="maincontainer">
+        <div id="top" style="background-image:url('/static/pics/top{{ imagenums|random }}.JPG')">
+            <div id="watermark">Emmerbøllegård</div>
+        </div>
+        <div id="menu">
+            <span><a href="/">forside</a></span>
+            <span><a href="/">billeder</a></span>
+            <span><a href="/prices">priser</a></span>
+            <span><a href="/book">reservér</a></span>
+        </div>
+        <div id="content">
+            {% block content %}
+                <div class="col21">
+                   {% include "bookingcalendarfragment.html" %}
+                </div>
+                <div class="col22">
+                    <p>Emmerbøllegård ligger i et af de mest idylliske områder på naturskønne Langeland. Stuehuset på den 4-længede gård, huser op til 8 personer.</p>
+                    <p>Gæster på Emmerbøllegård har mulighed for at slappe af og lege i den store afskærmede have. Med en grill, og terasser og havemøbler på både øst og vest-siden af huset kan morgenen og aftenen nydes i fulde drag.</p>
+                    <p>Der er adgang til en hyggelig, afsides strand, 900 meter fra gården. For dem der gerne vil have adgang til badebroer, toiletter og minimarked, er der en dejlig, børnevenlig badestrand 1,1 km fra gården.</p>
+                    <p>Med sin centrale placering, er Emmerbøllegård ideelt for dem, der vil udforske både nord-, og sydenden af Langeland. </p>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+    <div id="rightshadow" class="shadow"></div>
+</div>
 </body>
 </html>

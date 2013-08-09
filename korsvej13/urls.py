@@ -7,6 +7,8 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'booking.views.home', name='home'),
+    url(r'^book[/]?$', 'booking.views.book', name='book'),
+    url(r'^booking/([0-9]+)/([0-9]+)[/]?$', 'booking.views.booking', name='booking'),
     # url(r'^korsvej13/', include('korsvej13.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
